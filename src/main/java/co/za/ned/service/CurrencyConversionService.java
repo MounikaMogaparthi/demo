@@ -51,12 +51,12 @@ public class CurrencyConversionService {
         return responseQuote;
     }
 
-    public CurrencyList getallCurrencies() {
+    /*public CurrencyList getallCurrencies() {
         List<Currency> currencies = currencyDao.findAll();
         CurrencyList currencyList=new CurrencyList();
 return currencyList;
     }
-
+    */
     private CurrencyConversion saveExchangeRate(String fromCurrency, String toCurrency, double currencyRate) {
         String code = fromCurrency.toUpperCase() + "-" + toCurrency.toUpperCase();
         return currencyConversionDao.update(new CurrencyConversion(code, currencyRate, new Timestamp(new Date().getTime())));

@@ -42,7 +42,7 @@ public class CurrencyService {
 
     public static void main(String[] args) {
         getSymbols();
-       // getLatestRate();
+       getLatestRate();
 
     }
 }

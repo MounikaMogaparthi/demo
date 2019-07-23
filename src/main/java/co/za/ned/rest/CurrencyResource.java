@@ -6,11 +6,11 @@ import co.za.ned.service.CurrencyConversionService;
 import co.za.ned.service.CurrencyService;
 
 import javax.inject.Inject;
+
 import javax.mvc.Controller;
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.awt.*;
+
 
 
 @Path("/resource")
@@ -19,10 +19,6 @@ public class CurrencyResource {
 
     public CurrencyResource() {
     }
-
-    CurrencyConversionService currencyConversionService = new CurrencyConversionService();
-
-
     CurrencyService currencyService=new CurrencyService();
 
 
@@ -70,6 +66,6 @@ public class CurrencyResource {
         return code;
     }
 
-
-
+    public static void main(String[] args) {
+    }
 }

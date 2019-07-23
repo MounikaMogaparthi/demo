@@ -2,6 +2,7 @@
   <library name="ojdbc14">
     <CLASSES>
       <root url="jar://$USER_HOME$/Database/ojdbc14.jar!/" />
+      <root url="jar://$USER_HOME$/Database/com.mysql.jdbc_5.1.5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

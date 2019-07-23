@@ -2,14 +2,11 @@ package co.za.ned.dao;
 
 import co.za.ned.model.Currency;
 import co.za.ned.model.CurrencyConversion;
-
-
-import javax.annotation.ManagedBean;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-@ManagedBean
+
 public class CurrencyConversionDao {
 
 

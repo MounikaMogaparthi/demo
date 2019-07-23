@@ -39,4 +39,6 @@ public class Currency {
     public void setCurrencyName(String currencyName) {
         this.currencyName = currencyName;
     }
+
+
 }

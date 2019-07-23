@@ -25,15 +25,14 @@
     
     <httpEndpoint httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint" />
 
-    <library id="OracleLib">
-        <fileset dir="/home/mounika/Database" includes="ojdbc14.jar"/>
+    <library id="MySQLLib">
+        <fileset dir="/home/mounika/Database" includes="com.mysql.jdbc_5.1.5.jar"/>
     </library>
 
     <dataSource jndiName="jdbc/forex " transactional="true" validationTimeout="0">
-        <jdbcDriver libraryRef="OracleLib"/>
-        <properties.oracle driverType="thin" databaseName="XE"
-                           serverName="localhost" portNumber="1521"
-                           user="Hr" password="manager"/>
+        <jdbcDriver libraryRef="MySQLLib"/>
+        <properties  databaseName="FOREX" serverName="localhost"
+                     portNumber="3306" user="root" password="root"/>
     </dataSource>
     <webApplication id="RestExample" location="RestExample.war" name="RestExample" contextRoot="/"/>
 
