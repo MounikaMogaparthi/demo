@@ -33,10 +33,10 @@ public class CurrencyService {
 
     }
 
-    public static double getCurrencyConverted() {
+    /*public static double getCurrencyConverted() {
         ForexClient forexClient = new ForexClient();
         return ForexClient.getCurrencyConversionRate("AED", "INR");
-    }
+    }*/
 
 
 

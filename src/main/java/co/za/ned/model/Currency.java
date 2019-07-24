@@ -40,5 +40,7 @@ public class Currency {
         this.currencyName = currencyName;
     }
 
+    public static void main(String[] args) {
 
+    }
 }

@@ -21,4 +21,8 @@ public class SymbolsClient {
         System.out.println(run1);
         return run1;
     }
+
+    public static void main(String[] args) {
+        symbols();
+    }
 }

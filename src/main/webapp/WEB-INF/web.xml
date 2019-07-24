@@ -5,25 +5,13 @@
     <display-name>Hello Servlet</display-name>
 
 
-
-<!--
-
-       <servlet>
-            <servlet-name>restservlet</servlet-name>
-            <servlet-class>com.ibm.websphere.jaxrs.server.IBMRestServlet</servlet-class>
-            <init-param>
-                <param-name>javax.ws.rs.Application</param-name>
-                <param-value>co.za.ned.config.AppConfig</param-value>
-            </init-param>
-            <load-on-startup>1</load-on-startup>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>restservlet</servlet-name>
-            <url-pattern>/*</url-pattern>
-        </servlet-mapping>
-
--->
-
+    <resource-ref>
+        <description>connection to FOREX</description>
+        <res-ref-name>jdbc/FOREX</res-ref-name>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+        <lookup-name>jdbc/demo</lookup-name>
+    </resource-ref>
 
    <welcome-file-list>
         <welcome-file>index.html</welcome-file>

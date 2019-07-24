@@ -25,15 +25,16 @@
     
     <httpEndpoint httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint" />
 
-    <library id="MySQLLib">
-        <fileset dir="/home/mounika/Database" includes="com.mysql.jdbc_5.1.5.jar"/>
-    </library>
 
-    <dataSource jndiName="jdbc/forex " transactional="true" validationTimeout="0">
+    <dataSource id="DefaultDataSource" jndiName="jdbc/demo ">
         <jdbcDriver libraryRef="MySQLLib"/>
         <properties  databaseName="FOREX" serverName="localhost"
                      portNumber="3306" user="root" password="root"/>
     </dataSource>
+
+    <library id="MySQLLib">
+        <file name="/home/mounika/Database/com.mysql.jdbc_5.1.5.jar"/>
+    </library>
     <webApplication id="RestExample" location="RestExample.war" name="RestExample" contextRoot="/"/>
 
     <!-- create a jvm.options file in the liberty server folder and add -Djava.security.debug=certpath -->

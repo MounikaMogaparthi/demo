@@ -1,23 +1,36 @@
 package co.za.testRestClient;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.io.Serializable;
+import java.sql.*;
+import javax.naming.*;
+import javax.sql.DataSource;
 
-public class TestDB {
+public class TestDB implements Serializable {
+    private DataSource dataSource;
 
+    public TestDB() {
+        try {
+            Context initContext = new InitialContext();
+            Context envContext = (Context)
+                    initContext.lookup("java:/comp/TestDB");
+            dataSource = (DataSource) envContext.lookup("jdbc/demo");
+        } catch (NamingException ex) {
+            throw new RuntimeException(ex);
+        }
 
-    public static void main(String[] args) throws  Exception {
-       String q="create table currency589(id int(6), name varchar(56));";
-     /*  Class.forName("com.mysql.jdbc.Driver");*/
-       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FOREX","root","root");
-       Statement s=con.createStatement();
-       s.executeUpdate(q);
-       System.out.println("Table created");
- }
+    }
+
+    public static void main(String[] args) {
+        TestDB testDB=new TestDB();
+        testDB.isConnectedOK();
+
+    }
+        public boolean isConnectedOK () {
+            try (Connection conn = dataSource.getConnection()) {
+                return !conn.isClosed();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
 }

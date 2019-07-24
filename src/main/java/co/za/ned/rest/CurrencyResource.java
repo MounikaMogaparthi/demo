@@ -7,18 +7,21 @@ import co.za.ned.service.CurrencyService;
 
 import javax.inject.Inject;
 
-import javax.mvc.Controller;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 
 
 @Path("/resource")
-@Controller
+
 public class CurrencyResource {
 
     public CurrencyResource() {
     }
+
+    CurrencyConversionService currencyConversionService = new CurrencyConversionService();
+
+
     CurrencyService currencyService=new CurrencyService();
 
 
@@ -67,5 +70,7 @@ public class CurrencyResource {
     }
 
     public static void main(String[] args) {
+
     }
+
 }
