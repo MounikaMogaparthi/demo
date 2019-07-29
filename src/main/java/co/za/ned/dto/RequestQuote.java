@@ -7,8 +7,7 @@ import javax.persistence.Table;
 import javax.ws.rs.Consumes;
 import java.sql.Timestamp;
 import java.util.Date;
-@Entity
-@Table(name="Currency_Conversion")
+
 public class RequestQuote {
 
     private String clientId;

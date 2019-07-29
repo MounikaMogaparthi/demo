@@ -1,4 +1,4 @@
-<!-- 
+<!--
  (C) Copyright IBM Corporation 2017.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,20 +13,23 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
+
 <server description="Sample Servlet server">
+
     <featureManager>
-        <feature>jsp-2.3</feature>
-        <feature>jsonp-1.1</feature>
         <feature>jaxrs-2.1</feature>
-        <feature>jaxws-2.2</feature>
-        <feature>javaee-8.0</feature>
+        <feature>jsonp-1.1</feature>
+        <feature>cdi-2.0</feature>
+        <feature>jpa-2.2</feature>
+        <feature>beanValidation-2.0</feature>
 
     </featureManager>
-    
+
+
     <httpEndpoint httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint" />
 
 
-    <dataSource id="DefaultDataSource" jndiName="jdbc/demo ">
+    <dataSource id="DefaultDataSource" jndiName="jdbc/MyDataSource ">
         <jdbcDriver libraryRef="MySQLLib"/>
         <properties  databaseName="FOREX" serverName="localhost"
                      portNumber="3306" user="root" password="root"/>

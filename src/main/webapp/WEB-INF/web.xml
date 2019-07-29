@@ -4,13 +4,17 @@
     version="3.1">
     <display-name>Hello Servlet</display-name>
 
+    <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>SampleBasicRealm</realm-name>
+    </login-config>
 
     <resource-ref>
         <description>connection to FOREX</description>
         <res-ref-name>jdbc/FOREX</res-ref-name>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
-        <lookup-name>jdbc/demo</lookup-name>
+        <lookup-name>jdbc/MyDataSource</lookup-name>
     </resource-ref>
 
    <welcome-file-list>

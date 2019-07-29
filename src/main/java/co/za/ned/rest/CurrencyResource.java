@@ -7,6 +7,8 @@ import co.za.ned.service.CurrencyService;
 
 import javax.inject.Inject;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -25,10 +27,12 @@ public class CurrencyResource {
     CurrencyService currencyService=new CurrencyService();
 
 
+
     @GET
     @Path("/hello")
     @Produces(MediaType.TEXT_PLAIN)
     public String getHello(){
+
         return "Hello";
     }
 
