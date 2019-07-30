@@ -1,5 +1,8 @@
 package co.za.ned.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,7 +14,9 @@ public class Currency {
 
     @Id
     @Column(name="CURRENCY_CODE")
+
     private String currencyCode;
+
 
     @Column(name="CURRENCY_NAME")
     private String currencyName;
@@ -19,7 +24,7 @@ public class Currency {
     public Currency() {
     }
 
-    public Currency(String currencyCode, String currencyName) {
+    public Currency( String currencyCode, String currencyName) {
         this.currencyCode = currencyCode;
         this.currencyName = currencyName;
     }
@@ -38,6 +43,14 @@ public class Currency {
 
     public void setCurrencyName(String currencyName) {
         this.currencyName = currencyName;
+    }
+
+    @Override
+    public String toString() {
+        return "Currency{" +
+                "currencyCode='" + currencyCode + '\'' +
+                ", currencyName='" + currencyName + '\'' +
+                '}';
     }
 
     public static void main(String[] args) {

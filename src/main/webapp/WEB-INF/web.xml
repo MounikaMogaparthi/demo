@@ -9,6 +9,16 @@
     <realm-name>SampleBasicRealm</realm-name>
     </login-config>
 
+    <!--<persistence-context-ref>
+        <persistence-context-ref-name>jdbc/MyDataSource</persistence-context-ref-name>
+        <persistence-unit-name>forex</persistence-unit-name>
+    </persistence-context-ref>
+
+    <persistence-unit-ref>
+        <persistence-unit-ref-name>jdbc/MyDataSource</persistence-unit-ref-name>
+        <persistence-unit-name>forex</persistence-unit-name>
+    </persistence-unit-ref>-->
+
     <resource-ref>
         <description>connection to FOREX</description>
         <res-ref-name>jdbc/FOREX</res-ref-name>

@@ -10,14 +10,7 @@ import co.za.ned.model.Currency;
 import co.za.ned.model.CurrencyConversion;
 import co.za.ned.model.CurrencyList;
 
-import javax.annotation.ManagedBean;
-import javax.inject.Inject;
-import javax.net.ssl.*;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
+
 import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
@@ -50,14 +43,7 @@ public class CurrencyConversionService {
         // up or down if reqs from the same user > 5 to day 2% upto 1000$
         return responseQuote;
     }
-/*
 
-    public CurrencyList getallCurrencies() {
-        List<Currency> currencies = currencyDao.findAll();
-        CurrencyList currencyList=new CurrencyList();
-return currencyList;
-    }
-*/
 
     private CurrencyConversion saveExchangeRate(String fromCurrency, String toCurrency, double currencyRate) {
         String code = fromCurrency.toUpperCase() + "-" + toCurrency.toUpperCase();

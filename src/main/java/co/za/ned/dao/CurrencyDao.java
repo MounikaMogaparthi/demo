@@ -8,12 +8,15 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.sql.DataSource;
+import javax.transaction.UserTransaction;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,10 +46,25 @@ private EntityManager entityManager;
     }
     public void dbConnection(){
 
+/*
+        try {
+            Context ctx = new InitialContext();
+            UserTransaction tran = (UserTransaction) ctx.lookup("java:comp/UserTransaction");
+            tran.begin();
+
+            EntityManager em = (EntityManager) ctx.lookup("jdbc/MyDataSource");
+            Currency currency = new Currency();
+            em.persist(currency);
+            tran.commit();
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }*/
+
         try {
 
         dataSource = (DataSource) new InitialContext().lookup("jdbc/MyDataSource");
-
+            System.out.println(dataSource);
         Connection connection = dataSource.getConnection();
             System.out.println(connection);
         PreparedStatement preparedStatement = connection.prepareStatement("select * from CURRENCY");
@@ -59,7 +77,8 @@ private EntityManager entityManager;
     } catch (NamingException e) {
             System.out.println(""+e);
 
-    } catch (
+    }
+       catch (
     SQLException e) {
         e.printStackTrace();
     }
@@ -75,14 +94,15 @@ private EntityManager entityManager;
         CurrencyDao currencyDao=new CurrencyDao();
         currencyDao.connection();
         currencyDao.dbConnection();
-       /* currencyDao.findAll();*/
+        //currencyDao.findAll();
 
     }
 
 
     public  List<Currency> findAll() {
-        List<Currency> currencies = entityManager.createNativeQuery("SELECT * FROM CURRENCY", co.za.ned.model.Currency.class).getResultList();
-        return currencies;
+        TypedQuery<Currency> currencyTypedQuery=entityManager.createQuery("Select c from CURRENCY c",Currency.class);
+       // List<Currency> currencies = entityManager.createNativeQuery("SELECT * FROM CURRENCY", co.za.ned.model.Currency.class).getResultList();
+        return currencyTypedQuery.getResultList();
     }
 
 
