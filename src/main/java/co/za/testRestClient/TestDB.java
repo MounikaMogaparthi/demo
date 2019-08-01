@@ -12,6 +12,8 @@ import java.sql.Statement;
 import javax.annotation.Resource;
 import javax.annotation.sql.*;
 import javax.annotation.Resource.AuthenticationType;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,24 +41,18 @@ public class TestDB extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    @Resource(name = "jdbc/MyDataSource", type = javax.sql.DataSource.class, shareable = true, authenticationType = AuthenticationType.CONTAINER)
-
-    DataSource ds1;
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Statement stmt = null;
         Connection con = null;
 
         try {
+            DataSource ds1 = (DataSource) new InitialContext().lookup("jdbc/demo");
             con = ds1.getConnection();
 
             stmt = con.createStatement();
-            // create a table
-            stmt.executeUpdate("create table Currency5 (CODE varchar(50) not null primary key,  NAME varchar(30))");
-            // insert a test record
-            stmt.executeUpdate("insert into Currency5 values ('AED', 'DIRHAM')");
-            // select a record
-            ResultSet result = stmt.executeQuery("select NAME from Currency5 where name='DIRHAM'");
-            result.next();
+
+            ResultSet result = stmt.executeQuery("select CURRENCY_CODE from CURRENCY where CURRENCY_NAME='DIRHAM'");
+            //result.next();
 
             response.getWriter().print("</TITLE></HEAD><body bgcolor='#f8f7cd'>");
             response.getWriter().print("<h1><font color=green>Test connection successfull </font></h1>");
@@ -65,24 +61,23 @@ public class TestDB extends HttpServlet {
 
         }
         catch (SQLException e) {
-
-            response.getWriter().print("</TITLE></HEAD><body bgcolor='#f8f7cd'>");
-            response.getWriter().print("<h1><font color=green>Test connection Failed </font></h1>");
-            response.getWriter().print("<br /><center><form><input type=\"button\" value=\"Go back\" onclick=\"history.back();return false;\"/></form></center>");
-
-            e.printStackTrace();
-
-        }
-        finally {
+            response.getWriter().print("<pre>");
+            e.printStackTrace(response.getWriter());
+            response.getWriter().print("</pre>");
+        } catch (NamingException e) {
+            response.getWriter().print("<pre>");
+            e.printStackTrace(response.getWriter());
+            response.getWriter().print("</pre>");
+        } finally {
+//            try {
+//                // drop the table to clean up and to be able to rerun the test.
+//                stmt.executeUpdate("drop table Currency5");
+//            }
+//            catch (SQLException e) {
+//                e.printStackTrace();
+//            }
             try {
-                // drop the table to clean up and to be able to rerun the test.
-                stmt.executeUpdate("drop table Currency5");
-            }
-            catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                con.close();
+                if (con != null) con.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -100,4 +95,3 @@ public class TestDB extends HttpServlet {
     }
 
 }
-

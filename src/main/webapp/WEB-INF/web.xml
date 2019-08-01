@@ -24,7 +24,7 @@
         <res-ref-name>jdbc/FOREX</res-ref-name>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
-        <lookup-name>jdbc/MyDataSource</lookup-name>
+        <lookup-name>jdbc/demo</lookup-name>
     </resource-ref>
 
    <welcome-file-list>
