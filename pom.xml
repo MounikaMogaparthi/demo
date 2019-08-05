@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>co.za.ned</groupId>
     <artifactId>RestExample</artifactId>
@@ -18,16 +19,16 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <packaging.type>minify,runnable</packaging.type>
     </properties>
-    
+
     <profiles>
         <profile>
             <id>usr-package</id>
             <properties>
                 <packaging.type>usr</packaging.type>
-            </properties>        
-        </profile>    
+            </properties>
+        </profile>
     </profiles>
-    
+
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -60,11 +61,12 @@
             <scope>provided</scope>
         </dependency>
 
-                <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.6</version>
+            <version>8.0.17</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/javax/javaee-web-api -->
@@ -81,12 +83,6 @@
             <version>2.25.1</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>1.0.2.Final</version>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
         <dependency>
@@ -127,17 +123,17 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
-       <!-- <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>javax.persistence</artifactId>
-            <version>2.2.1</version>
-        </dependency>-->
-        <!--<dependency>
+        <!-- <dependency>
+             <groupId>org.eclipse.persistence</groupId>
+             <artifactId>javax.persistence</artifactId>
+             <version>2.2.1</version>
+         </dependency>-->
+        <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
             <version>2.7.3</version>
             <scope>test</scope>
-        </dependency>-->
+        </dependency>
         <!--<dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa</artifactId>
@@ -153,7 +149,7 @@
         </dependency>
 
     </dependencies>
-    
+
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>

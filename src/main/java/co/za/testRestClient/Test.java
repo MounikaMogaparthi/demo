@@ -23,28 +23,29 @@ import javax.persistence.*;
 
 public class Test {
     public static void main(String[] args) {
-Test test=new Test();
-test.findAll();
+        Test test = new Test();
+        test.findAll();
     }
-        public List<Currency> findAll() {
-            EntityManagerFactory emf=Persistence.createEntityManagerFactory("forex");
-            EntityManager em = emf.createEntityManager();
-            List<Currency> result;
 
-            try {
-                em.getTransaction().begin();
-                TypedQuery<Currency> query = em.createQuery("Select c from Currency c", Currency.class);
-                result = query.getResultList();
-                em.getTransaction().commit();
-            } finally {
-                if (em.getTransaction().isActive()) {
-                    em.getTransaction().rollback();
-                }
-                em.close();
+    public List<Currency> findAll() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("forex");
+        EntityManager em = emf.createEntityManager();
+        List<Currency> result;
+
+        try {
+            em.getTransaction().begin();
+            TypedQuery<Currency> query = em.createQuery("Select c from Currency c", Currency.class);
+            result = query.getResultList();
+            em.getTransaction().commit();
+        } finally {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
             }
-
-            return result;
+            em.close();
         }
+
+        return result;
+    }
               /*  EntityManagerFactory emf=Persistence.createEntityManagerFactory("forex");
                 EntityManager em=emf.createEntityManager();
                 System.out.println(em.isOpen());
@@ -52,7 +53,7 @@ test.findAll();
                 System.out.println("Currency Name = "+s.getCurrencyName());
                 System.out.println("Currency Code = "+s.getCurrencyCode());
 */
-            }
+}
 
 
 

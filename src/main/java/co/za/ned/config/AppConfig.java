@@ -13,7 +13,7 @@ public class AppConfig extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         final Set<Class<?>> classes = new HashSet<>();
-        System.out.println("AppConfig obj intialized");
+        //System.out.println("AppConfig obj intialized");
         // register root resource
         classes.add(CurrencyResource.class);
         System.out.println("rest controller added ");
