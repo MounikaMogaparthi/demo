@@ -3,13 +3,13 @@ package co.za.ned.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Customer_Table")
+@Table(name = "Customer_Table")
 public class Customer {
-@Id
-@GeneratedValue
-@Column(name="Customer_Id")
-  private Integer cid;
-@Column(name="Customer_Name")
+    @Id
+    @GeneratedValue
+    @Column(name = "Customer_Id")
+    private Integer cid;
+    @Column(name = "Customer_Name")
     private String cname;
 
     public Customer() {
@@ -20,8 +20,7 @@ public class Customer {
         this.cname = cname;
     }
 
-    public Integer getCid()
-    {
+    public Integer getCid() {
         return cid;
     }
 

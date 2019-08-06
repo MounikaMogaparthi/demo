@@ -10,9 +10,9 @@ public class CustomerDao {
     @PersistenceContext(name = "forex")
     EntityManager entityManager;
 
-    public Customer get(String id){
-        Customer customer=entityManager.find(Customer.class, id);
-        return  customer;
+    public Customer get(String id) {
+        Customer customer = entityManager.find(Customer.class, id);
+        return customer;
     }
 
 

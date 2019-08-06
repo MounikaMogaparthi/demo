@@ -1,5 +1,7 @@
 package co.za.ned.model;
+
 import java.util.List;
+
 public class Country {
 
     private String name;
@@ -12,13 +14,11 @@ public class Country {
         return name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getAlpha2Code()
-    {
+    public String getAlpha2Code() {
         return alpha2Code;
     }
 

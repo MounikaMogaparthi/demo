@@ -1,7 +1,6 @@
 package co.za.testRestClient;
 
 
-
 import java.io.IOException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -59,8 +58,7 @@ public class TestDB extends HttpServlet {
             response.getWriter().print("<br /><center><form><input type=\"button\" value=\"Go back\" onclick=\"history.back();return false;\"/></form></center>");
 
 
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             response.getWriter().print("<pre>");
             e.printStackTrace(response.getWriter());
             response.getWriter().print("</pre>");

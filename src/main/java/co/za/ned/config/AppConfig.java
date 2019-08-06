@@ -10,7 +10,7 @@ import java.util.*;
 
 @ApplicationPath("api/v1")
 public class AppConfig extends Application {
-    @Override
+   /* @Override
     public Set<Class<?>> getClasses() {
         final Set<Class<?>> classes = new HashSet<>();
         //System.out.println("AppConfig obj intialized");
@@ -18,5 +18,5 @@ public class AppConfig extends Application {
         classes.add(CurrencyResource.class);
         System.out.println("rest controller added ");
         return classes;
-    }
+    }*/
 }

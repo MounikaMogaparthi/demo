@@ -1,15 +1,16 @@
 package co.za.ned.model;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public class CurrencyList {
-        private List<Currency> currencies;
-    }
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CurrencyList {
+    private List<Currency> currencies;
+}
 
 

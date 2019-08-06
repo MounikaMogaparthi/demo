@@ -4,9 +4,11 @@ import co.za.ned.dao.CurrencyDao;
 import co.za.ned.dto.RequestQuote;
 import co.za.ned.dto.ResponseQuote;
 import co.za.ned.model.Currency;
+import co.za.ned.model.GetCurrenciesResponse;
 import co.za.ned.service.CurrencyConversionService;
 import co.za.ned.service.CurrencyService;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 
 import javax.json.Json;
@@ -17,6 +19,7 @@ import javax.persistence.PersistenceContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.awt.*;
+import java.util.List;
 
 
 @Path("/resource")
@@ -26,20 +29,40 @@ public class CurrencyResource {
     public CurrencyResource() {
     }
 
-    CurrencyConversionService currencyConversionService = new CurrencyConversionService();
-
+    @Inject
+    private CurrencyDao currencyDao;
+    @Inject
+    private CurrencyConversionService currencyConversionService;
 
     CurrencyService currencyService = new CurrencyService();
 
-    CurrencyDao currencyDao = new CurrencyDao();
 
     @GET
     @Path("/hello")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public String getHello() {
-        CurrencyDao cd= new CurrencyDao();
-        cd.connection();
         return "Hello";
+    }
+
+    @GET
+    @Path("/currencyList")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Currency> currencies() {
+        return currencyDao.getAll();
+    }
+
+    @GET
+    @Path("/currency/{currencyCode}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Currency getOne(@PathParam("currencyCode") String currencyCode) {
+        return currencyDao.find(currencyCode);
+    }
+
+    @GET
+    @Path("/currencydetail")
+    @Produces(MediaType.APPLICATION_JSON)
+    public GetCurrenciesResponse listCurrencies() {
+        return currencyConversionService.findAllCurrencies();
     }
 
 
@@ -50,7 +73,7 @@ public class CurrencyResource {
                                           @PathParam("from") String fromCurrency,
                                           @PathParam("to") String toCurrency,
                                           @PathParam("fromAmount") double sourceAmount) {
-        CurrencyConversionService currencyConversionService = new CurrencyConversionService();
+        // CurrencyConversionService currencyConversionService = new CurrencyConversionService();
         RequestQuote requestQuote = new RequestQuote(clientId, fromCurrency, toCurrency, sourceAmount);
 
         try {
@@ -60,28 +83,6 @@ public class CurrencyResource {
             return new ResponseQuote(500, "Failed", e.getMessage(), null, null, 0, 0);
         }
     }
-
-    /*@Path("/one/{code}")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Currency getOne(@PathParam("code") String currencyCode) {
-        Currency currency = new Currency();
-        return currencyDao.find(currencyCode);
-
-    }
-
-
-    @Path("/all")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public JsonArray getAll() {
-        JsonArrayBuilder builder = Json.createArrayBuilder();
-        for (Currency currency : currencyDao.findAll()) {
-            builder.add(Json.createObjectBuilder().add("currencyCode", currency.getCurrencyCode()));
-            builder.add(Json.createObjectBuilder().add("currencyName", currency.getCurrencyName()));
-        }
-        return builder.build();
-    }*/
 
     @GET
     @Path("/latestex")
@@ -102,7 +103,8 @@ public class CurrencyResource {
     }
 
     public static void main(String[] args) {
-
+        CurrencyResource currencyResource = new CurrencyResource();
+        currencyResource.getlatestEx();
     }
 
 }

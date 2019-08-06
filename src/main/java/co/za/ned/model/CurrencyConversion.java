@@ -13,19 +13,19 @@ public class CurrencyConversion {
 
     @Id
 
-    @Column(name="from_to_currency")
+    @Column(name = "from_to_currency")
     private String fromToCurrency;
 
-    @Column(name="conversion_rate")
+    @Column(name = "conversion_rate")
     private Double conversionRate;
 
-    @Column(name="updateddate")
+    @Column(name = "updateddate")
     private Timestamp updatedDate;
 
     public CurrencyConversion() {
     }
 
-    public CurrencyConversion( String fromToCurrency, Double conversionRate, Timestamp updatedDate) {
+    public CurrencyConversion(String fromToCurrency, Double conversionRate, Timestamp updatedDate) {
 
         this.fromToCurrency = fromToCurrency;
         this.conversionRate = conversionRate;

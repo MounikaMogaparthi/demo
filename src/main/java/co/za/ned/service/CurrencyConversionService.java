@@ -6,11 +6,10 @@ import co.za.ned.dao.CurrencyDao;
 import co.za.ned.dto.RequestQuote;
 import co.za.ned.dto.ResponseQuote;
 import co.za.ned.forexAPIClient.ForexClient;
-import co.za.ned.model.Currency;
-import co.za.ned.model.CurrencyConversion;
-import co.za.ned.model.CurrencyList;
+import co.za.ned.model.*;
 
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
@@ -19,9 +18,9 @@ public class CurrencyConversionService {
 
     CurrencyDao currencyDao = new CurrencyDao();
 
-    CurrencyConversionDao currencyConversionDao=new CurrencyConversionDao();
+    CurrencyConversionDao currencyConversionDao = new CurrencyConversionDao();
 
-    CurrencyConversion currencyConversion=new CurrencyConversion();
+    CurrencyConversion currencyConversion = new CurrencyConversion();
 
     public ResponseQuote getCurrencyConversion(RequestQuote requestQuote) {
         if (requestQuote.getSourceAmount() < 0) {
@@ -43,19 +42,21 @@ public class CurrencyConversionService {
         // up or down if reqs from the same user > 5 to day 2% upto 1000$
         return responseQuote;
     }
-
-
-    private CurrencyConversion saveExchangeRate(String fromCurrency, String toCurrency, double currencyRate) {
-        String code = fromCurrency.toUpperCase() + "-" + toCurrency.toUpperCase();
-        return currencyConversionDao.update(new CurrencyConversion(code, currencyRate, new Timestamp(new Date().getTime())));
+    public GetCurrenciesResponse findAllCurrencies() {
+        List<Currency> currencies = this.currencyDao.findAll();
+        GetCurrenciesResponse getCurrenciesResponse = new GetCurrenciesResponse();
+        getCurrenciesResponse.setCurrencies(CurrencyMapper.mapResponse(currencies));
+        return getCurrenciesResponse;
     }
 
- public static void main(String[] args) {
+        public static void main(String[] args) {
         RequestQuote q = new RequestQuote();
         q.setFromCurrency("ZAR");
         q.setToCurrency("inr");
         q.setSourceAmount(3500.0);
         ResponseQuote rq = new CurrencyConversionService().getCurrencyConversion(q);
         System.out.println(rq);
+            System.out.println(new CurrencyConversionService().findAllCurrencies());
+
     }
 }

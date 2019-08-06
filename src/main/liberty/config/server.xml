@@ -22,8 +22,8 @@
         <feature>cdi-2.0</feature>
         <feature>jpa-2.2</feature>
         <feature>bells-1.0</feature>
+        <feature>jndi-1.0</feature>
         <feature>beanValidation-2.0</feature>
-
 
 
     </featureManager>
@@ -43,7 +43,7 @@
     </dataSource>
 
 
-  <webApplication id="RestExample" location="RestExample.war" name="RestExample" contextRoot="/"/>
+    <webApplication id="RestExample" location="RestExample.war" name="RestExample" contextRoot="/"/>
 
     <!-- create a jvm.options file in the liberty server folder and add -Djava.security.debug=certpath -->
 

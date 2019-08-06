@@ -1,7 +1,6 @@
 package co.za.ned.model;
 
 
-
 public class ResponseMessage {
     int statusCode;
     String statusMessage;

@@ -21,7 +21,7 @@ public class RequestQuote {
         this.fromCurrency = fromCurrency;
         this.toCurrency = toCurrency;
         this.sourceAmount = sourceAmount;
-        this.timestamp=new Timestamp(new Date().getTime());
+        this.timestamp = new Timestamp(new Date().getTime());
     }
 
     public RequestQuote() {

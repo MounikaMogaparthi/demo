@@ -2,6 +2,7 @@ package co.za.ned.dao;
 
 import co.za.ned.model.Currency;
 import co.za.ned.model.CurrencyConversion;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,8 +11,8 @@ import java.util.List;
 public class CurrencyConversionDao {
 
 
-@PersistenceContext(name="forex")
-   EntityManager entityManager;
+    @PersistenceContext(name = "forex")
+    EntityManager entityManager;
 
     public CurrencyConversion save(CurrencyConversion currencyConversion) {
         entityManager.persist(currencyConversion);
@@ -27,7 +28,6 @@ public class CurrencyConversionDao {
         entityManager.merge(currencyConvertor);
         return currencyConvertor;
     }
-
 
 
 }

@@ -18,10 +18,10 @@ import javax.ws.rs.core.MediaType;
 public class CurrencyService {
 
     private LatestExRateClient latestExRateClient;
-    private  SymbolsClient symbolsClient;
+    private SymbolsClient symbolsClient;
 
 
-    public  static String getSymbols() {
+    public static String getSymbols() {
         SymbolsClient symbolsClient = new SymbolsClient();
         return symbolsClient.symbols();
     }
@@ -39,10 +39,9 @@ public class CurrencyService {
     }*/
 
 
-
     public static void main(String[] args) {
         getSymbols();
-       getLatestRate();
+        getLatestRate();
 
     }
 }
