@@ -13,13 +13,13 @@ public class CurrencyConversion {
 
     @Id
 
-    @Column(name = "from_to_currency")
+    @Column(name = "From_To_Currency")
     private String fromToCurrency;
 
-    @Column(name = "conversion_rate")
+    @Column(name = "Conversion_Rate")
     private Double conversionRate;
 
-    @Column(name = "updateddate")
+    @Column(name = "UpdatedDate")
     private Timestamp updatedDate;
 
     public CurrencyConversion() {

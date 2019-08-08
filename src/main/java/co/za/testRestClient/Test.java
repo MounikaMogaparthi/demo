@@ -1,6 +1,7 @@
 package co.za.testRestClient;
 
 import co.za.ned.model.Currency;
+import com.google.gson.Gson;
 
 import javax.annotation.Resource;
 import javax.naming.Context;
@@ -12,7 +13,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,36 +26,23 @@ import javax.persistence.*;
 
 public class Test {
     public static void main(String[] args) {
-        Test test = new Test();
-        test.findAll();
-    }
 
-    public List<Currency> findAll() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("forex");
-        EntityManager em = emf.createEntityManager();
-        List<Currency> result;
+        Gson gson = new Gson();
 
-        try {
-            em.getTransaction().begin();
-            TypedQuery<Currency> query = em.createQuery("Select c from Currency c", Currency.class);
-            result = query.getResultList();
-            em.getTransaction().commit();
-        } finally {
-            if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }
-            em.close();
+        try (Reader reader = new FileReader("/home/mounika/Documents/CurrencyCode.json.odt")) {
+
+            // Convert JSON File to Java Object
+            Currency currency = gson.fromJson(reader, Currency.class);
+
+            // print staff object
+            System.out.println(currency);
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        return result;
     }
-              /*  EntityManagerFactory emf=Persistence.createEntityManagerFactory("forex");
-                EntityManager em=emf.createEntityManager();
-                System.out.println(em.isOpen());
-                Currency s=em.find(Currency.class,"AED");
-                System.out.println("Currency Name = "+s.getCurrencyName());
-                System.out.println("Currency Code = "+s.getCurrencyCode());
-*/
+
+
 }
 
 
