@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="eclipselink.jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Database/com.mysql.jdbc_5.1.5.jar!/" />
+      <root url="jar://$USER_HOME$/Database/eclipselink-2.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
