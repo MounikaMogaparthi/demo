@@ -1,6 +1,5 @@
 package co.za.ned.dao;
 
-import co.za.ned.model.Currency;
 import co.za.ned.model.Customer;
 
 import javax.persistence.EntityManager;

@@ -8,7 +8,7 @@ import co.za.ned.dto.ResponseQuote;
 import co.za.ned.forexAPIClient.ForexClient;
 import co.za.ned.forexAPIClient.SymbolsClient;
 import co.za.ned.model.*;
-import co.za.ned.service.mapper.CurrencyMapper;
+import co.za.ned.mapper.CurrencyMapper;
 
 
 import javax.inject.Inject;
@@ -45,10 +45,7 @@ public class CurrencyConversionService {
         responseQuote.setConversionRate(conversionRate);
         responseQuote.setSourceAmount(requestQuote.getSourceAmount());
         responseQuote.setExchangedAmount(conversionRate * requestQuote.getSourceAmount());
-
         responseQuote.setTimestamp(new Timestamp(new Date().getTime()));
-        //persist response quote in table
-        // up or down if reqs from the same user > 5 to day 2% upto 1000$
         return responseQuote;
     }
 
@@ -111,7 +108,7 @@ public class CurrencyConversionService {
         q.setSourceAmount(3500.0);
         ResponseQuote rq = new CurrencyConversionService().getCurrencyConversion(q);
         System.out.println(rq);
-        // System.out.println(new CurrencyConversionService().findAllCurrencies());
+        System.out.println(new CurrencyConversionService().saveCurrencyDetails());
 
     }
 }

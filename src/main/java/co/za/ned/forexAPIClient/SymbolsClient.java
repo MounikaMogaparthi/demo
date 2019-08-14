@@ -27,6 +27,14 @@ public class SymbolsClient {
         System.out.println(run1);
         return run1;
     }
+    public static String symbols2() {
+        Client client = ClientBuilder.newClient();
+        String run2 = client.target("http://restcountries.eu/rest/v2/all")
+                .request(MediaType.APPLICATION_JSON)
+                .get(String.class);
+        System.out.println(run2);
+        return run2;
+    }
 
     public static List<CurrencyDetail> symbols1() throws Exception {
         List<CurrencyDetail> currenciesList = new ArrayList<>();
@@ -39,8 +47,7 @@ public class SymbolsClient {
         for (Country country : currencies) {
             for (Currency curr : country.getCurrencies()) {
                 if (curr.getCurrencyCode() == null || curr.getCurrencyName() == null) break;
-                //currenciesList.add(new Currency(curr.getCode(),curr.getName()));
-                break;
+                currenciesList.add(new CurrencyDetail(curr.getCurrencyCode(),curr.getCurrencyName()));
             }
         }
         return currenciesList;

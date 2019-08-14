@@ -96,20 +96,24 @@ public class CurrencyResource {
     }
 
     @GET
-    @Path("/latestex")
+    @Path("/latestEx")
     @Produces(MediaType.APPLICATION_JSON)
     private String getlatestEx() {
-        String latestex = currencyService.getLatestRate();
-        return latestex;
+        return currencyService.getLatestRate();
+
     }
 
     @GET
     @Path("/currencyCode")
     @Produces(MediaType.APPLICATION_JSON)
     public String getCurrencyCode() {
-        CurrencyService currencyService = new CurrencyService();
-        String code = currencyService.getSymbols();
-        return code;
+        return currencyService.getSymbols();
+    }
+
+    @GET
+    @Path("/currencyDetails")
+    public  String getCurrencyDetails(){
+        return currencyService.getSymbols2();
     }
 
     public static void main(String[] args) {
